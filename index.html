@@ -351,7 +351,7 @@ const COUNTRIES = [
 ];
 
 const pill = ([c, n]) =>
-  `<a class="pill" href="#"><img src="https://flagcdn.com/w40/${c}.png" alt="" loading="lazy" onerror="this.remove()">${n}</a>`;
+  `<a class="pill" href="javascript:void(0)"><img src="https://flagcdn.com/w40/${c}.png" alt="" loading="lazy" onerror="this.remove()">${n}</a>`;
 
 document.querySelectorAll('.countries .row').forEach(row => {
   const list = row.dataset.dir === 'rev' ? [...COUNTRIES].reverse() : COUNTRIES;
