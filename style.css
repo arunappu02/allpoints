@@ -312,10 +312,10 @@ footer .logo img{height:44px;margin-bottom:14px}
 }
 
 /* ===== Reduced motion ===== */
-@media (prefers-reduced-motion:reduce){
+/* @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .hero h1 span i{transform:none}
   .hero p,.hero .kicker{opacity:1}
   .reveal{opacity:1;transform:none}
   .countries .row{overflow-x:auto}
-}
+} */
