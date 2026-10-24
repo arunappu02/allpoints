@@ -25,13 +25,13 @@ z<!DOCTYPE html>
 
   <nav id="navLinks" aria-label="Main navigation">
     <a href="#top">Home</a>
-    <a href="#about">About</a>
+    <a href="about.html">About</a>
     <a href="#services">Services</a>
     <a href="#pre-departure">Pre-Departure</a>
     <a href="#destinations">Destinations</a>
     <a href="#immigration">Immigration</a>
     <a href="#testimonials">Testimonials</a>
-    <a class="btn solid" href="#cta">Contact</a>
+    <a class="btn solid" href="#cta">Get Free Counselling</a>
   </nav>
 </header>
 
@@ -133,48 +133,95 @@ z<!DOCTYPE html>
   </section>
 
   <section class="testi" id="testimonials">
-    <span class="kicker reveal">Testimonials</span>
-    <h2 class="reveal">Voice of Success</h2>
-    <p>Every student's journey is unique. At AllPoints, we are proud to support students as they explore international education opportunities and take steps towards their future goals.</p>
-    <div class="cards">
-        <div class="tcard reveal">
-          <div class="tuser">
-            <div class="av">
-              <img src="nikhil&monika.jpeg" alt="Nikhil & Monika">
-            </div>
-            <h3><b>NIKHIL & MONICA</b></h3>
-          </div>
-            <p>Excellent service and genuine support throughout the process.</p>
-        </div>
-        <div class="tcard reveal">
-          <div class="tuser">
-            <div class="av">
-              <img src="akshay.jpeg" alt="AKSHAY MURALEEDHARAN">
-            </div>
-            <h3><b>AKSHAY MURALEEDHARAN</b></h3>
-          </div>
-          <p>A big thank you to Allpoints for making my dream come true.</p>
-        </div>
-        <div class="tcard reveal">
-          <div class="tuser">
-            <div class="av">
-              <img src="shajil.png" alt="SHAJIL MURALIDHARAN">
-            </div>
-            <h3><b>SHAJIL MURALIDHARAN</b></h3>
-          </div>
-          <p>Professional support from start to finish. Highly recommended!</p>
-        </div>
-                
-      </div>
+  <span class="kicker reveal">Testimonials</span>
+  <h2 class="reveal">What Our Students Says</h2>
 
-   <!-- NEW: View more button -->
-   <div class="view-more">
-  <a href="#countries">
-    View more Success <span>→</span>
-  </a>
-</div>
+  <div class="tslider reveal" id="tslider" aria-label="Student testimonials">
+    <div class="ttrack">
 
-  </section>
+      <div class="slide"><div class="tcard">
+        <div class="tuser">
+          <div class="av"><img src="nikhil&monika.jpeg" alt="Nikhil &amp; Monica"></div>
+          <b>NIKHIL &amp; MONICA</b>
+        </div>
+        <p>Excellent service and genuine support throughout the process.</p>
+      </div></div>
+
+      <div class="slide"><div class="tcard">
+        <div class="tuser">
+          <div class="av"><img src="akshay.jpeg" alt="Akshay Muraleedharan"></div>
+          <b>AKSHAY MURALEEDHARAN</b>
+        </div>
+        <p>A big thank you to Allpoints for making my dream come true.</p>
+      </div></div>
+
+      <div class="slide"><div class="tcard">
+        <div class="tuser">
+          <div class="av"><img src="shajil.png" alt="Shajil Muralidharan"></div>
+          <b>SHAJIL MURALIDHARAN</b>
+        </div>
+        <p>Professional support from start to finish. Highly recommended!</p>
+      </div></div>
+      <div class="slide"><div class="tcard">
+        <div class="tuser">
+          <div class="av"><img src="vipindas.jpeg" alt="vipindas"></div>
+          <b>VIPIN DAS</b>
+        </div>
+        <p>I'm grateful to AllPoints for guiding me every step of the way</p>
+      </div></div>
+      <div class="slide"><div class="tcard">
+        <div class="tuser">
+          <div class="av"><img src="arunlal.png" alt="Arunlal"></div>
+          <b>ARUNLAL</b>
+        </div>
+        <p>Thanks to AllPoints, I'm now happily settled in Malta!</p>
+      </div></div>
+      <div class="slide"><div class="tcard">
+        <div class="tuser">
+          <div class="av"><img src="joby.jpeg" alt="Shajil Muralidharan"></div>
+          <b>JOBY JOSEPH</b>
+        </div>
+        <p>Choosing AllPoints was the best decision for my Malta journey.</p>
+      </div></div>
+      <div class="slide"><div class="tcard">
+        <div class="tuser">
+          <div class="av"><img src="jeethu.png" alt="jeethu"></div>
+          <b>JEETHU</b>
+        </div>
+        <p>Thanks to AllPoints, my dream of building a career abroad came true.</p>
+      </div></div>
+      <div class="slide"><div class="tcard">
+        <div class="tuser">
+          <div class="av"><img src="mukesh.jpeg" alt="MUKESH"></div>
+          <b>MUKESH</b>
+        </div>
+        <p>Thank you, AllPoints, for making my overseas journey so easy.</p>
+      </div></div>
+      <div class="slide"><div class="tcard">
+        <div class="tuser">
+          <div class="av"><img src="sreejith.jpeg" alt="SREEJITH"></div>
+          <b>SREEJITH</b>
+        </div>
+        <p>Reliable, supportive, and always there when I needed help.</p>
+      </div></div>
+
+    </div>
+    
+        <div class="twrap">
+
+          <div class="tslider reveal" id="tslider" aria-label="Student testimonials">
+            <div class="ttrack">
+              <!-- ningalude slide cards ivide angane thanne -->
+            </div>
+          </div>
+
+          <button class="tbtn tprev" id="tPrev" type="button" aria-label="Previous testimonial">←</button>
+          <button class="tbtn tnext" id="tNext" type="button" aria-label="Next testimonial">→</button>
+
+        </div>
+
+  </div>
+</section>
 
   <!-- <section class="news">
     <span class="kicker reveal">Our News</span>
@@ -213,20 +260,20 @@ z<!DOCTYPE html>
     </label>
 
     <label>Choose your interest course
-  <select name="course" required>
-    <option value="">Select a course</option>
-    <option>Degree</option>
-    <option>Diploma</option>
-    <option>Pg Diploma</option>
-    <option>Masters</option>
-    <!-- <option>Nursing &amp; Healthcare</option>
-    <option>Business &amp; Management</option>
-    <option>IT &amp; Computer Science</option>
-    <option>Hospitality &amp; Tourism</option>
-    <option>Language Training (IELTS / German)</option> -->
-    <option>Other</option>
-  </select>
-</label>
+      <select name="course" required>
+        <option value="">Select a course</option>
+        <option>Degree</option>
+        <option>Diploma</option>
+        <option>Pg Diploma</option>
+        <option>Masters</option>
+        <!-- <option>Nursing &amp; Healthcare</option>
+        <option>Business &amp; Management</option>
+        <option>IT &amp; Computer Science</option>
+        <option>Hospitality &amp; Tourism</option>
+        <option>Language Training (IELTS / German)</option> -->
+        <option>Other</option>
+      </select>
+    </label>
 
     <label>Preferred country
       <select name="country">
@@ -259,9 +306,9 @@ z<!DOCTYPE html>
       <p style="max-width:38ch">We assist students every step of the way to obtain their ideal foreign degree and are the top overseas education consultants in the business today.</p>
     </div>
     <div><h4>Quick Links</h4><ul>
-      <li><a href="https://allpoints.co.in/">Home</a></li><li><a href="https://allpoints.co.in/about-us/">About Us</a></li>
-      <li><a href="https://allpoints.co.in/study-abroad/">Study Abroad</a></li><li><a href="https://allpoints.co.in/immigration/">Immigrations</a></li>
-      <li><a href="https://allpoints.co.in/services/">A to Z Services</a></li><li><a href="https://allpoints.co.in/contact-us/">Contact</a></li></ul></div>
+      <li><a href="#top">Home</a></li><li><a href="about.html">About Us</a></li>
+      <li><a href="#Services">Services</a></li>
+      <li><a href="#pre-departure">Pre-Departure</a></li><li><a href="#destinations">Destination</a></li><li><a href="#immigration">Immigration</a></li><li><a href="#testimonials">Testimonials</a></li><li><a href="#cta">Free Counselling</a></li></ul></div>
     <div><h4>Office Information</h4><ul>
       <li>AllPoints West Fort Road, Opposite Rappadi, Palakkad - 678001</li><li>+91 89210 58582</li><li>+91 89214 58582</li><li>+91 80756 69234</li>
       <li>study@allpoints.mt</li></ul></div>
@@ -419,6 +466,147 @@ if (form) {
     }
   });
 }
+/* ---------- Testimonial arrows: put them in the right place ---------- */
+(function () {
+  const slider = document.getElementById('tslider');
+  if (!slider) return;
+
+  // remove any old arrow buttons
+  document.querySelectorAll('#tPrev, #tNext, .tarrows').forEach(el => el.remove());
+
+  // wrap the slider (once)
+  let wrap = slider.parentElement;
+  if (!wrap.classList.contains('twrap')) {
+    wrap = document.createElement('div');
+    wrap.className = 'twrap';
+    slider.parentNode.insertBefore(wrap, slider);
+    wrap.appendChild(slider);
+  }
+
+  // add fresh buttons outside the slider
+   // choose one: 'long' | 'chevron' | 'double' | 'triangle'
+  const STYLE = 'double';
+
+  const ICONS = {
+    long:     { prev: '<path d="M19 12H5M11 6l-6 6 6 6"/>',          next: '<path d="M5 12h14M13 6l6 6-6 6"/>' },
+    chevron:  { prev: '<path d="M15 5l-7 7 7 7"/>',                  next: '<path d="M9 5l7 7-7 7"/>' },
+    double:   { prev: '<path d="M11 6l-6 6 6 6M19 6l-6 6 6 6"/>',    next: '<path d="M13 6l6 6-6 6M5 6l6 6-6 6"/>' },
+    triangle: { prev: '<path d="M15 6v12L7 12z" fill="currentColor"/>', next: '<path d="M9 6v12l8-6z" fill="currentColor"/>' }
+  };
+
+  const svg = p => '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" ' +
+    'stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + p + '</svg>';
+
+  wrap.insertAdjacentHTML('beforeend',
+    '<button class="tbtn tprev" id="tPrev" type="button" aria-label="Previous testimonial">' + svg(ICONS[STYLE].prev) + '</button>' +
+    '<button class="tbtn tnext" id="tNext" type="button" aria-label="Next testimonial">' + svg(ICONS[STYLE].next) + '</button>');
+})();
+
+/* ---------- Testimonials slider ---------- */
+(function () {
+  const DUR = 600;          // movement speed in ms (smaller = faster)
+  const GAP = 3500;         // time between automatic moves in ms
+
+  const slider = document.getElementById('tslider');
+  if (!slider) return;
+
+  const track = slider.querySelector('.ttrack');
+  const originals = [...track.children];
+  const n = originals.length;
+  const mq = matchMedia('(min-width:900px)');
+  const prevBtn = document.getElementById('tPrev');
+  const nextBtn = document.getElementById('tNext');
+  let vis, center, moving = false, paused = false, dir = 1, timer;
+
+  slider.style.setProperty('--dur', DUR + 'ms');
+
+  function build() {
+    vis = mq.matches ? 3 : 1;                 // desktop 3 cards, mobile 1 card
+    center = vis === 3 ? 1 : 0;
+    slider.style.setProperty('--vis', vis);
+
+    const total = n * Math.ceil((vis + 1) / n);
+    track.style.transition = 'none';
+    track.style.transform = 'translate3d(0,0,0)';
+    track.innerHTML = '';
+    for (let k = 0; k < total; k++) {
+      const el = originals[k % n].cloneNode(true);
+      el.classList.remove('active');
+      track.appendChild(el);
+    }
+    track.children[center].classList.add('active');
+    moving = false;
+  }
+
+  function finish() {
+    if (!moving) return;
+    if (dir === 1) {
+      track.style.transition = 'none';
+      track.style.transform = 'translate3d(0,0,0)';
+      track.appendChild(track.firstElementChild);
+    }
+    moving = false;
+  }
+
+  function go(d) {
+    if (moving || document.hidden) return;
+    moving = true;
+    dir = d;
+    const ease = `transform ${DUR}ms cubic-bezier(.4,0,.2,1)`;
+
+    if (d === 1) {                                       // next
+      const w = track.children[0].offsetWidth;
+      track.children[center].classList.remove('active');
+      track.children[center + 1].classList.add('active');
+      track.style.transition = ease;
+      track.style.transform = `translate3d(${-w}px,0,0)`;
+    } else {                                             // previous
+      track.style.transition = 'none';
+      track.insertBefore(track.lastElementChild, track.firstElementChild);
+      const w = track.children[0].offsetWidth;
+      track.style.transform = `translate3d(${-w}px,0,0)`;
+      void track.offsetWidth;                            // apply the jump before animating
+      track.children[center + 1].classList.remove('active');
+      track.children[center].classList.add('active');
+      track.style.transition = ease;
+      track.style.transform = 'translate3d(0,0,0)';
+    }
+    setTimeout(finish, DUR + 120);                       // safety if transitionend does not fire
+  }
+
+  function restart() {
+    clearInterval(timer);
+    timer = setInterval(() => { if (!paused) go(1); }, GAP);
+  }
+
+  track.addEventListener('transitionend', e => {
+    if (e.target === track && e.propertyName === 'transform') finish();
+  });
+
+  /* arrow buttons */
+  if (nextBtn) nextBtn.addEventListener('click', () => { go(1);  restart(); });
+  if (prevBtn) prevBtn.addEventListener('click', () => { go(-1); restart(); });
+
+  /* swipe on phones */
+  let startX = null;
+  slider.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  slider.addEventListener('touchend', e => {
+    if (startX === null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    startX = null;
+    if (Math.abs(dx) > 50) { go(dx < 0 ? 1 : -1); restart(); }
+  });
+
+  /* pause while the mouse is on the slider */
+  slider.addEventListener('mouseenter', () => paused = true);
+  slider.addEventListener('mouseleave', () => paused = false);
+  slider.addEventListener('focusin',    () => paused = true);
+  slider.addEventListener('focusout',   () => paused = false);
+  mq.addEventListener('change', build);
+
+  build();
+  restart();
+})();
 
 </script>
 </body>
