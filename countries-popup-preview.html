@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Countries popup preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d2b3e;--sand:#fff6ea;--coral:#ff6b4a;--muted:#4f6575;--pad:clamp(18px,5vw,72px);--font:"Plus Jakarta Sans","Segoe UI",Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html.no-scroll{overflow:hidden}
+body{font-family:var(--font);background:var(--navy);color:#fff;line-height:1.6}
+button{font:inherit;cursor:pointer}
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:0 var(--pad);position:relative;
+  background:radial-gradient(60% 50% at 85% 20%,rgba(138,208,255,.4),transparent 70%),var(--navy)}
+.kicker{color:var(--coral);font-weight:700;margin-bottom:6px}
+.hero h1{font-size:clamp(3rem,10vw,7rem);line-height:1;letter-spacing:-.03em;margin-bottom:14px}
+.hero p{max-width:44ch;color:#c9d6df;margin-bottom:24px}
+.btn{align-self:flex-start;padding:12px 26px;border-radius:999px;border:0;background:#ff4500;color:#fff;font-weight:700;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(255,107,74,.4)}
+.va{position:absolute;top:96px;right:var(--pad);padding:10px 18px;border-radius:999px;color:#fff;font-weight:700;font-size:.9rem;
+  background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.5);backdrop-filter:blur(8px);transition:background .25s,border-color .25s}
+.va:hover{background:var(--coral);border-color:var(--coral)}
+
+#ov{position:fixed;inset:0;z-index:50;background:rgba(13,43,62,.6);opacity:0;pointer-events:none;transition:opacity .3s}
+#ov.open{opacity:1;pointer-events:auto}
+#pn{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);z-index:51;display:flex;flex-direction:column;
+  background:#fff;color:var(--navy);box-shadow:-20px 0 50px rgba(0,0,0,.25);
+  transform:translateX(100%);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+#pn.open{transform:none}
+.head{display:flex;align-items:center;gap:10px;padding:20px 20px 14px;border-bottom:1px solid #e5e8ec}
+.head .t{flex:1;min-width:0}
+.head h3{font-size:1.5rem;line-height:1.1;letter-spacing:-.02em}
+.head small{color:var(--muted)}
+.ib{width:40px;height:40px;flex:none;border-radius:50%;border:1.5px solid #d9dfe4;background:#fff;color:var(--navy);transition:background .25s,color .25s,border-color .25s}
+.ib:hover{background:var(--coral);border-color:var(--coral);color:#fff}
+#sw{padding:12px 20px 0}
+#q{width:100%;font:inherit;padding:12px 16px;border:1.5px solid #d9dfe4;border-radius:999px;color:var(--navy)}
+#q:focus{outline:none;border-color:var(--coral);box-shadow:0 0 0 4px rgba(255,107,74,.2)}
+#bd{flex:1;overflow:auto;padding:14px 20px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.item{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid #e5e8ec;border-radius:14px;background:#fff;color:var(--navy);font-weight:500;text-align:left;transition:background .2s,border-color .2s,transform .2s}
+.item:hover{background:var(--sand);border-color:var(--coral);transform:translateY(-2px)}
+.item img{width:24px;height:auto;border-radius:3px;flex:none}
+.uni{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid #e5e8ec;animation:in .5s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(.1s + var(--k) * .07s)}
+.uni:last-child{border-bottom:0}
+@keyframes in{from{opacity:0;transform:translateX(24px)}}
+.logo{width:48px;height:48px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-weight:800}
+.uni h4{font-size:1rem;line-height:1.3}
+.city{display:block;margin:2px 0 8px;font-size:.85rem;color:var(--muted)}
+.chip{display:inline-block;margin:0 4px 4px 0;padding:3px 10px;border-radius:999px;font-size:.78rem;background:var(--sand);border:1px solid #eadfce}
+.muted{color:var(--muted)}
+#ft{display:none;padding:16px 20px 20px;border-top:1px solid #e5e8ec;text-align:center}
+#ft .btn{width:100%;text-align:center;align-self:auto}
+#ft small{display:block;margin-top:8px;color:var(--muted)}
+@media (max-width:768px){
+  #pn{top:auto;left:0;right:0;width:auto;height:82%;border-radius:22px 22px 0 0;transform:translateY(100%)}
+  .va{top:84px;font-size:.8rem;padding:8px 14px}
+}
+</style>
+</head>
+<body>
+
+  <section class="hero">
+    <button class="va" id="va" type="button">View all 35+ countries</button>
+    <div class="kicker">Our Destinations</div>
+    <div style="color:#c9d6df;margin-bottom:6px">Europe</div>
+    <h1>Malta</h1>
+    <p>Placeholder line about studying in Malta.</p>
+    <button class="btn" id="em" type="button">Explore Malta →</button>
+  </section>
+
+<div id="ov"></div>
+<aside id="pn" role="dialog" aria-modal="true" aria-labelledby="ti" aria-hidden="true">
+  <div class="head">
+    <button class="ib" id="bk" type="button" aria-label="Back to all countries" style="display:none">←</button>
+    <div class="t"><h3 id="ti">All destinations</h3><small id="su">Choose a country to see universities</small></div>
+    <button class="ib" id="cl" type="button" aria-label="Close">✕</button>
+  </div>
+  <div id="sw"><input id="q" type="search" placeholder="Search a country" autocomplete="off"></div>
+  <div id="bd"></div>
+  <div id="ft">
+    <button class="btn" type="button">Get free counselling</button>
+    <small id="nt"></small>
+  </div>
+</aside>
+
+<script>
+const ALL='us:USA,gb:United Kingdom,ca:Canada,au:Australia,de:Germany,sk:Slovakia,am:Armenia,pl:Poland,cz:Czech Republic,uz:Uzbekistan,mt:Malta,fr:France,it:Italy,es:Spain,ie:Ireland,at:Austria,dk:Denmark,fi:Finland,nz:New Zealand,nl:Netherlands,se:Sweden,ch:Switzerland,ae:UAE,sg:Singapore,no:Norway,hu:Hungary,lt:Lithuania,my:Malaysia,kr:South Korea,ge:Georgia,ru:Russia,cy:Cyprus,mu:Mauritius,lv:Latvia,kg:Kyrgyzstan,al:Albania,md:Moldova'.split(',').map(s=>s.split(':'));
+const UNIS={'Malta':[
+  {name:'University name',city:'City',courses:['Course one','Course two']},
+  {name:'University name',city:'City',courses:['Course one','Course two']},
+  {name:'University name',city:'City',courses:['Course one','Course two']}]};
+
+const $=id=>document.getElementById(id);
+const pn=$('pn'),ov=$('ov'),bd=$('bd'),q=$('q'),bk=$('bk'),sw=$('sw'),ft=$('ft');
+let from='all';
+
+function drawAll(t){
+  const f=ALL.filter(([,n])=>n.toLowerCase().includes(t.trim().toLowerCase()));
+  bd.innerHTML=f.length
+    ?'<div class="grid">'+f.map(([c,n])=>`<button class="item" type="button" data-n="${n}"><img src="https://flagcdn.com/w40/${c}.png" alt="" onerror="this.remove()">${n}</button>`).join('')+'</div>'
+    :'<p class="muted">No country found.</p>';
+}
+function viewAll(){
+  $('ti').textContent='All destinations';$('su').textContent='Choose a country to see universities';
+  bk.style.display='none';sw.style.display='block';ft.style.display='none';
+  drawAll(q.value);bd.scrollTop=0;
+}
+function viewUni(n){
+  const u=UNIS[n];
+  $('ti').textContent=n;
+  $('su').textContent=u?u.length+' universities':'Details coming soon';
+  bk.style.display=from==='all'?'block':'none';
+  sw.style.display='none';ft.style.display='block';
+  $('nt').textContent=n+' is pre-selected in the contact form';
+  bd.innerHTML=u
+    ?u.map((x,i)=>`<div class="uni" style="--k:${i}"><div class="logo">${x.name.split(' ').slice(0,2).map(w=>w[0]).join('')}</div><div><h4>${x.name}</h4><span class="city">${x.city}</span>${x.courses.map(c=>`<span class="chip">${c}</span>`).join('')}</div></div>`).join('')
+    :'<p class="muted">Our team will guide you personally for this country. Tap the button below to talk to us.</p>';
+  bd.scrollTop=0;
+}
+function openP(){ov.classList.add('open');pn.classList.add('open');pn.setAttribute('aria-hidden','false');document.documentElement.classList.add('no-scroll')}
+function closeP(){ov.classList.remove('open');pn.classList.remove('open');pn.setAttribute('aria-hidden','true');document.documentElement.classList.remove('no-scroll')}
+
+$('va').onclick=()=>{from='all';q.value='';viewAll();openP();setTimeout(()=>q.focus(),350)};
+$('em').onclick=()=>{from='direct';viewUni('Malta');openP()};
+bd.addEventListener('click',e=>{const b=e.target.closest('.item');if(b){from='all';viewUni(b.dataset.n)}});
+bk.onclick=viewAll;
+q.oninput=()=>drawAll(q.value);
+$('cl').onclick=closeP;ov.onclick=closeP;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeP()});
+</script>
+</body>
+</html>
