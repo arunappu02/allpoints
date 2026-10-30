@@ -116,13 +116,51 @@ h2{font-size:clamp(1.9rem,4.6vw,3.6rem);max-width:20ch;margin-bottom:20px}
 .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}
 .reveal.in{opacity:1;transform:none}
 
-/* ===== About ===== */
-.about{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,72px);align-items:start}
-.points{display:grid;gap:16px}
-.point{background:#fff;border-radius:20px;padding:22px 24px;border-left:5px solid var(--coral);transition:transform .25s}
-.point:hover{transform:translateX(8px)}
-.point h3{font-size:1.2rem;margin-bottom:6px}
-.point p{color:var(--muted)}
+/* ===== About: small cards that stack on top of each other (like Services) ===== */
+
+/* SIZE: change these 3 values */
+.abt-stack{--box-w:880px;--box-h:clamp(140px,15vw,190px);--box-pad:clamp(16px,2.2vw,26px);padding-bottom:clamp(40px,6vw,70px)}
+
+.abt-stack .wstack{max-width:var(--box-w);margin:clamp(20px,3vw,40px) auto 0;padding-bottom:0}
+.abt-stack .wcard{
+  top:calc(96px + var(--i) * 14px);
+  min-height:var(--box-h);margin-bottom:10px;border-radius:24px 24px 0 0}
+.abt-stack .wcard:last-child{margin-bottom:0;border-radius:24px}
+
+/* no image: one full-width column */
+.abt-stack .wcard,.abt-stack .wcard:nth-child(even){grid-template-columns:1fr}
+.abt-stack .wcard .num,.abt-stack .wcard:nth-child(even) .num{left:auto;right:14px}
+.abt-stack .wcard-text{padding:var(--box-pad);gap:8px;padding-right:calc(var(--box-pad) + 30px)}
+.abt-stack .wcard-text h3{font-size:clamp(1.3rem,2.4vw,1.8rem)}
+.abt-stack .wcard-text p{font-size:.95rem;max-width:none}
+.abt-stack .wcard-text .tag{font-size:.78rem;padding:4px 12px}
+.abt-stack .wcard .num{width:32px;height:32px;font-size:.85rem}
+
+/* cards come in from the sides (Mission left, Vision right, Promise left) while they stack.
+   Uses the separate "translate" property, so your stacking scale effect keeps working. */
+.abt-anim .wcard{translate:-140px 0;opacity:0;transition:translate 1s cubic-bezier(.2,.8,.2,1),opacity .9s}
+.abt-anim .wcard:nth-child(even){translate:140px 0}
+.abt-anim .wcard.in,.abt-anim .wcard:nth-child(even).in{translate:0 0;opacity:1}
+
+@media (max-width:760px){
+  .abt-anim .wcard{translate:-60px 0}
+  .abt-anim .wcard:nth-child(even){translate:60px 0}
+  .abt-anim .wcard.in,.abt-anim .wcard:nth-child(even).in{translate:0 0}
+  .abt-stack .wcard{top:calc(84px + var(--i) * 12px);border-radius:22px 22px 0 0}
+  .abt-stack .wcard:last-child{border-radius:22px}
+}
+
+/* ===== About: text on the left, image on the right ===== */
+.abt-head{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,5vw,72px);align-items:center}
+.abt-copy .lead{margin-bottom:0}
+.abt-photo{position:relative;justify-self:center;width:min(100%,400px);aspect-ratio:1/1.05;display:grid;place-items:end center}
+.abt-photo::before{content:"";position:absolute;width:82%;aspect-ratio:1;border-radius:50%;background:var(--coral);top:8%;left:50%;transform:translateX(-50%)}
+.abt-photo img{position:relative;width:100%;height:100%;object-fit:contain;object-position:bottom}
+@media (max-width:900px){
+  .abt-head{grid-template-columns:1fr}
+  .abt-photo{width:min(78%,320px)}
+}
+
 
 /* ===== Services ===== */
 .services{background:var(--navy);color:#fff}
@@ -133,6 +171,8 @@ h2{font-size:clamp(1.9rem,4.6vw,3.6rem);max-width:20ch;margin-bottom:20px}
 .chips{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px}
 .chips span{padding:12px 22px;border-radius:999px;border:1px solid rgba(255,255,255,.3);font-weight:700;transition:background .2s,border-color .2s}
 .chips span:hover{background:var(--coral);border-color:var(--coral)}
+
+
 
 /* ===== Services: stacking cards ===== */
 /* ===== Services: cute stacking cards ===== */
@@ -208,6 +248,39 @@ h2{font-size:clamp(1.9rem,4.6vw,3.6rem);max-width:20ch;margin-bottom:20px}
 .stack img:first-child{width:75%;height:75%;top:0;left:0}
 .stack img:last-child{width:50%;height:50%;right:0;bottom:0;border:6px solid var(--sand);animation:float 6s ease-in-out infinite}
 
+/* ===== Why AllPoints ===== */
+/* stats band: map background, 4 columns, line on top of each */
+.why-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,48px);
+  margin:clamp(28px,4vw,48px) calc(var(--pad) * -1);padding:clamp(40px,6vw,80px) var(--pad) clamp(52px,8vw,110px);color:#fff;
+  /* map.png is the map you already use in the loading screen. Change .8 to show more / less of the map */
+  background:linear-gradient(rgba(13,43,62,.8),rgba(13,43,62,.8)),url('map.png') center/cover no-repeat,var(--navy)}
+.why-stats>div{border-top:1px solid rgba(255,255,255,.35);padding-top:clamp(18px,2.6vw,36px)}
+.why-stats b{display:block;font-size:clamp(3rem,7.4vw,6rem);line-height:1;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.why-stats em{font-style:normal;color:var(--coral)}
+.why-stats .lbl{display:block;margin-top:6px;font-weight:700;font-size:clamp(.95rem,1.6vw,1.2rem);color:#c9d6df}
+@media (max-width:700px){.why-stats{grid-template-columns:1fr 1fr;row-gap:32px}}
+
+/* two rows of 3 cards: row 2 slides over row 1 (stacking, like Services) */
+.why-rows{position:relative}
+.why-rows::after{content:"";display:block;height:34vh}            /* keeps the stack in place a little longer */
+.why-row{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,24px);
+  position:sticky;top:96px;background:var(--sand);padding:14px 4px 34px;margin-bottom:clamp(10px,2vw,20px)}
+.why-card{position:relative;overflow:hidden;background:#fff;border-radius:22px;border-top:5px solid var(--coral);
+  padding:clamp(20px,2.6vw,30px);box-shadow:0 10px 26px rgba(13,43,62,.07)}
+.why-card.reveal{transition:opacity .8s var(--d,0s),transform .8s var(--d,0s) cubic-bezier(.2,.8,.2,1),translate .25s,box-shadow .25s}
+.why-card:hover{translate:0 -8px;box-shadow:0 20px 40px rgba(13,43,62,.14)}
+.why-card::after{content:attr(data-n);position:absolute;top:8px;right:18px;font-size:3.4rem;font-weight:800;line-height:1;color:var(--navy);opacity:.07}
+.why-ic{display:grid;place-items:center;width:54px;height:54px;margin-bottom:16px;border-radius:50%;font-size:1.5rem;
+  background:var(--t,#ffe9e1);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.why-card:hover .why-ic{transform:rotate(-10deg) scale(1.12)}
+.why-card h3{font-size:1.25rem;margin-bottom:8px}
+.why-card p{color:var(--muted)}
+
+@media (max-width:900px){
+  .why-rows::after{display:none}
+  .why-row{position:relative;top:auto;grid-template-columns:1fr 1fr;padding:0;background:none;margin-bottom:clamp(14px,2vw,24px)}
+}
+@media (max-width:600px){.why-row{grid-template-columns:1fr}}
 
 
 /* ===== Route animation ===== */
@@ -551,6 +624,8 @@ html.has-plane select{cursor:auto!important}
   .cform button{width:100%}
 }
 
+.cinfo .addr{font-weight:500;font-size:1rem;max-width:44ch;margin-top:10px}
+.cinfo .addr span{display:block;font-size:1.2rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;opacity:.85}
 
 .view-more {
   width: 100%;
@@ -786,3 +861,52 @@ html{scrollbar-gutter:stable}
   .dsl-allview{top:96px;bottom:84px}
   .dsl-allgrid{grid-template-columns:1fr 1fr}
 }
+
+/* ===== Loading screen with flying planes ===== */
+html.loader-on{overflow:hidden}
+html.loader-on .hero .kicker,
+html.loader-on .hero h1 span i,
+html.loader-on .hero p{animation-play-state:paused}         /* hero text starts after the loader */
+
+#loader{
+  position:fixed;inset:0;z-index:99990;display:none;place-items:center;overflow:hidden;color:#fff;
+  /* background:linear-gradient(180deg,#0a2233 0%,#12405c 55%,#1b5a7a 100%); */
+  transition:transform .9s cubic-bezier(.76,0,.24,1);
+  background-image: url('map.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  min-height: 500px;
+}
+html.has-loader #loader{display:grid}
+#loader.out{transform:translateY(-100%)}
+
+.cloud{position:absolute;width:46vw;height:15vw;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.16),transparent);filter:blur(6px);animation:cloud linear infinite;will-change:transform}
+@keyframes cloud{from{transform:translateX(-60vw)}to{transform:translateX(130vw)}}
+
+.fly{position:absolute;left:0;top:var(--y);opacity:var(--o);animation:flyR var(--t) linear var(--d) infinite;will-change:transform}
+.fly.l{animation-name:flyL}
+@keyframes flyR{from{transform:translateX(-30vw)}to{transform:translateX(115vw)}}
+@keyframes flyL{from{transform:translateX(115vw)}to{transform:translateX(-30vw)}}
+.bob{display:flex;align-items:center;animation:bob 3s ease-in-out infinite alternate}
+.fly.l .bob{flex-direction:row-reverse}
+@keyframes bob{from{transform:translateY(-10px)}to{transform:translateY(10px)}}
+.trail{width:18vw;height:3px;margin-right:6px;
+  background:repeating-linear-gradient(90deg,rgba(255,255,255,.9) 0 3px,transparent 3px 11px);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000);mask-image:linear-gradient(90deg,transparent,#000)}
+.fly.l .trail{margin:0 0 0 6px;-webkit-mask-image:linear-gradient(270deg,transparent,#000);mask-image:linear-gradient(270deg,transparent,#000)}
+.pl{width:var(--s);height:var(--s);flex:none;transform:rotate(90deg);fill:#fff;filter:drop-shadow(0 4px 6px rgba(0,0,0,.35))}
+.fly.l .pl{transform:rotate(-90deg)}
+
+.l-box{position:relative;z-index:2;display:grid;justify-items:center;gap:16px;padding:0 20px;text-align:center}
+.l-logo{height:clamp(44px,8vw,64px);width:auto;animation:lIn .9s cubic-bezier(.2,.8,.2,1) both}
+.l-word{font-family:Georgia,serif;font-size:clamp(1.8rem,5vw,2.6rem);font-weight:700;letter-spacing:.06em;animation:lIn .9s cubic-bezier(.2,.8,.2,1) both}
+.l-bar{width:min(280px,70vw);height:4px;border-radius:4px;background:rgba(255,255,255,.22);overflow:hidden}
+.l-bar span{display:block;height:100%;background:var(--coral);transform:scaleX(0);transform-origin:left}
+.l-num{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;font-variant-numeric:tabular-nums}
+.l-tag{color:rgba(255,246,234,.8);animation:lFade .8s .4s both}
+.l-skip{position:absolute;z-index:3;right:clamp(18px,4vw,40px);bottom:clamp(18px,4vw,36px);background:none;border:0;color:rgba(255,255,255,.6);font:inherit;cursor:pointer;transition:color .2s}
+.l-skip:hover{color:var(--coral)}
+@keyframes lIn{from{opacity:0;transform:translateY(18px) scale(.92)}}
+@keyframes lFade{from{opacity:0;transform:translateY(10px)}}
