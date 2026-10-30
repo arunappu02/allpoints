@@ -9,9 +9,34 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
 <!-- <link rel="stylesheet" href="style.css"> -->
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=7">
+<script>
+  /* loading screen: once per session */
+  try {
+    if (!sessionStorage.getItem('loader')) {
+      document.documentElement.classList.add('has-loader', 'loader-on');
+      setTimeout(() => document.documentElement.classList.remove('loader-on', 'has-loader'), 8000);   // safety
+    }
+  } catch (e) {}
+</script>
 </head>
 <body id="top">
+
+  <div id="loader" aria-hidden="true">
+    <div class="cloud" style="top:8%;animation-duration:60s;animation-delay:-20s"></div>
+    <div class="cloud" style="top:44%;animation-duration:80s;animation-delay:-55s;width:56vw"></div>
+    <div class="cloud" style="top:72%;animation-duration:70s;animation-delay:-5s"></div>
+
+    <div id="lPlanes"></div>   <!-- planes are added by the script -->
+
+    <div class="l-box">
+      <img class="l-logo" id="lLogo" src="AllPoints-Ltdw.svg" alt="">
+      <div class="l-bar"><span id="lFill"></span></div>
+      <div class="l-num" id="lNum">0%</div>
+      <p class="l-tag">FLY. STUDY. WORK. SETTLE.</p>
+    </div>
+    <button class="l-skip" id="lSkip" type="button">Skip</button>
+  </div>
 
 <header id="hdr">
   <a class="logo" href="#top">
@@ -43,20 +68,54 @@
       <p>Explore 35+ study abroad destinations across Europe, Asia, and North America. Discover opportunities to <b>study in the USA, UK, Canada, Australia, Germany, Japan</b>, and more. Find the right international university, achieve your academic goals, and develop the skills and experience needed to build a <b>successful global career</b>.</p>
       <a class="btn" href="#cta">Start your journey →</a>
     </div>
-    <img class="hero-img" src="https://allpoints.co.in/wp-content/uploads/2024/08/pixelcut-export-845x1024.png" alt="Student">
+    <img class="hero-img" src="hero.png" alt="Student">
   </section>
 
-  <section class="about" id="about">
-    <div class="reveal">
-      <span class="kicker">ABOUT COMPANY</span>
-      <h2>Driven by Originality and Superiority</h2>
-      <p class="lead"><b>Trusted in more than 35+ countries in the world.</b><br>As the top foreign education advisors, we are committed to assisting students in obtaining their ideal international degrees. We assist students at every stage in finding the classes, schools, and institutions that suit their requirements and expectations around the world with our extensive support services.</p>
+  <!-- ABOUT -->
+
+<section class="abt-stack" id="about">
+  <div class="abt-head">
+    <div class="abt-copy">
+    <span class="kicker reveal">ABOUT COMPANY</span>
+    <h2 class="reveal">Driven by Originality and Superiority</h2>
+    <p class="lead reveal"><b>Trusted in more than 35+ countries in the world.</b><br>As the top foreign education advisors, we are committed to assisting students in obtaining their ideal international degrees. We assist students at every stage in finding the classes, schools, and institutions that suit their requirements and expectations around the world with our extensive support services.</p>
     </div>
-    <div class="points reveal">
-      <div class="point"><h3>Free University &amp; Course Selection</h3><p>Our free university and course selection assistance helps you find the best educational fit, tailored to your aspirations and goals.</p></div>
-      <div class="point"><h3>Professional education training team</h3><p>Expert team, personalized guidance, innovative strategies for student success in professional education training.</p></div>
-    </div>
-  </section>
+    <img src="AllPoints.png" alt="Student">
+  </div>
+
+  <div class="wstack">
+
+    <article class="wcard" style="--i:0;--tint:#ffe9e1">
+      <div class="wcard-text">
+        <h3>Our Values</h3>
+        <p>We value honesty, quality, growth, and global opportunities, helping students build a brighter future through education.</p>
+      </div>
+    </article>
+
+    <article class="wcard" style="--i:1;--tint:#e3f3ff">
+      <div class="wcard-text">
+        <h3>Our Mission</h3>
+        <p>Study abroad is not a dream anymore, it is a path everyone can achieve. We are on a mission to educate the same.</p>
+      </div>
+    </article>
+
+    <article class="wcard" style="--i:2;--tint:#fff3d6">
+      <div class="wcard-text">
+        <h3>Our Vision</h3>
+        <p>Allpoints envisions expanding operations to cover a wider region and collaborating with cross-border agencies to provide ambitious job seekers with exciting opportunities in elite companies and small businesses. We prioritize the safety, rights, and well-being of our workforce, ensuring they are respected and rewarded.</p>
+      </div>
+    </article>
+
+
+    <article class="wcard" style="--i:1;--tint:#e3f3ff">
+      <div class="wcard-text">
+        <h3>OUR PROMISE</h3>
+        <p>Your future matters to us. From your first steps abroad to preparing for employment after graduation, AllPoints is here to guide you towards the next chapter of your journey.</p>
+      </div>
+    </article>
+
+  </div>
+</section>
 
   <section class="services" id="services">
     <span class="kicker reveal">OUR SERVICES</span>
@@ -208,6 +267,61 @@
       </div>
 
     <!-- <a class="btn reveal" href="https://allpoints.co.in/services/" style="margin-top:40px">View our A to Z Services</a> -->
+  </section>
+
+
+ <!-- WHY ALLPOINTS -->
+  <section class="why" id="why">
+  <span class="kicker reveal">WHY ALLPOINTS</span>
+  <h2 class="reveal">Why Students Choose AllPoints</h2>
+  <p class="lead reveal">From your first free consultation to life in your new country, we stay with you at every step, so your journey abroad feels clear and confident.</p>
+
+  <div class="why-stats reveal" id="whyStats">
+    <div><b><span data-count="35">35</span><em>+</em></b><span class="lbl">Countries</span></div>
+    <div><b><span data-count="100">100</span><em>+</em></b><span class="lbl">Universities</span></div>
+    <div><b><span data-count="5">5</span><em>k</em></b><span class="lbl">Courses</span></div>
+    <div><b><span data-count="500">500</span><em>+</em></b><span class="lbl">Clients</span></div>
+  </div>
+
+  <div class="why-rows">
+
+    <div class="why-row" style="--i:0">
+      <article class="why-card reveal" style="--d:0s;--t:#ffe9e1" data-n="01">
+        <span class="why-ic">🎓</span>
+        <h3>Student-First Support</h3>
+        <p>We understand each student's unique goals and provide guidance tailored to their interests and aspirations.</p>
+      </article>
+      <article class="why-card reveal" style="--d:.1s;--t:#e3f3ff" data-n="02">
+        <span class="why-ic">🌍</span>
+        <h3>Part-Time Job Guidance</h3>
+        <p>Guidance to help you explore part-time work opportunities while studying.</p>
+      </article>
+      <article class="why-card reveal" style="--d:.2s;--t:#fff3d6" data-n="03">
+        <span class="why-ic">🧭</span>
+        <h3>Career Guidance</h3>
+        <p>Advice on finding jobs related to your qualification and field of study.</p>
+      </article>
+    </div>
+
+    <div class="why-row" style="--i:1">
+      <article class="why-card reveal" style="--d:0s;--t:#e6f7ea" data-n="04">
+        <span class="why-ic">🏢</span>
+        <h3>Early Career Planning</h3>
+        <p>Approach us 2–3 months before course completion for timely job-search guidance and preparation.</p>
+      </article>
+      <article class="why-card reveal" style="--d:.1s;--t:#efe7ff" data-n="05">
+        <span class="why-ic">👩‍🏫</span>
+        <h3>Support When You Need It</h3>
+        <p>Have questions or need direction? You can always reach out to AllPoints for guidance.</p>
+      </article>
+      <article class="why-card reveal" style="--d:.2s;--t:#ffe9e1" data-n="06">
+        <span class="why-ic">🤝</span>
+        <h3>Transparent Communication</h3>
+        <p>We explain available options and important requirements clearly, helping students make informed decisions.</p>
+      </article>
+    </div>
+
+  </div>
   </section>
 
   <section class="route" id="route">
@@ -405,14 +519,27 @@
     <h2>Ready to Start Your Global Education Journey?</h2>
     <p>Signifies your first step toward international academic excellence. Explore top universities worldwide, experience diverse cultures, and gain a global perspective to enhance your career and personal growth.</p>
     <ul class="cinfo">
+      <li class="addr"><span>Palakkad Office</span>AllPoints, West Fort Road, Opposite Rappadi, Palakkad - 678001</li>
       <li><a href="tel:+918921058582">+91 89210 58582</a></li>
       <li><a href="tel:+918921458582">+91 89214 58582</a></li>
       <li><a href="tel:+918075669234">+91 80756 69234</a></li>
-      <li><a href="tel:+918075669234">+356 9998 1341</a></li>
 
       <li><a href="mailto:study@allpoints.mt">study@allpoints.mt</a></li>
+
+      <li class="addr"><span>Head Office</span>25/25, Vincenti Buildings, Strait St. Valletta, Malta</li>
+
+      <li><a href="tel:+35699981341">+356 9998 1341</a></li>
+      <li><a href="tel:+918921998119">+91 89219 98119</a></li>
+
+            <li><a href="mailto:info@allpoints.mt">info@allpoints.mt</a></li>
+
+      
+
+
     </ul>
+    
   </div>
+  
 
   <form class="cform reveal" id="contactForm" action="https://script.google.com/macros/s/AKfycbxlF7jNnAoJqExpVsiWYfaQCmN__LSs0lAwCu4p4I2lwsmXgk-RWabSjolDLJ_ecZaQ/exec" method="POST">
     <h3>Send us a message</h3>
@@ -478,13 +605,18 @@
       <p style="max-width:38ch">We assist students every step of the way to obtain their ideal foreign degree and are the top overseas education consultants in the business today.</p>
     </div>
     <div><h4>Quick Links</h4><ul>
-      <li><a href="#top">Home</a></li><li><a href="about.html">#about</a></li>
+      <li><a href="#top">Home</a></li>
+      <li><a href="#about">About Us</a></li>
       <li><a href="#Services">Services</a></li>
-      <li><a href="#pre-departure">Pre-Departure</a></li><li><a href="#destinations">Destination</a></li><li><a href="#immigration">Immigration</a></li><li><a href="#testimonials">Testimonials</a></li><li><a href="#cta">Free Counselling</a></li></ul></div>
-    <div><h4>Office Information</h4><ul>
+      <li><a href="#pre-departure">Pre-Departure</a></li>
+      <li><a href="#destinations">Destination</a></li>
+      <li><a href="#immigration">Immigration</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#cta">Free Counselling</a></li></ul></div>
+    <div><h4>Palakkad Office</h4><ul>
       <li>AllPoints West Fort Road, Opposite Rappadi, Palakkad - 678001</li><li>+91 89210 58582</li><li>+91 89214 58582</li><li>+91 80756 69234</li>
       <li>study@allpoints.mt</li></ul></div>
-    <div><h4>Malta Office</h4><ul>
+    <div><h4>Head Office</h4><ul>
       <li>25/25, Vincenti Buildings, Strait St. Valletta, Malta</li><li>+356 9998 1341</li><li>+91 89219 98119</li><li>info@allpoints.mt</li></ul></div>
   </div>
   <div class="bottom">
@@ -493,7 +625,11 @@
       <a href="https://www.facebook.com/share/1E1UcPH69e/?mibextid=wwXIfr" target="_blank">Facebook</a>
       <a href="https://www.instagram.com/_allpoints_?xtok=MXU0MmkyM25veW9rYg==" target="_blank">Instagram</a>
       <!-- <a href="https://www.linkedin.com/in/allpoints-overseas-2258a0321" target="_blank">LinkedIn</a> -->
-      <a href="https://wa.me/918921058582" target="_blank">WhatsApp</a>
+      <a href="https://wa.me/918921058582?text=Hi%2C%20I%E2%80%99m%20visiting%20from%20your%20website.%20I%E2%80%99m%20interested%20in%20studying%20abroad.%20Could%20you%20please%20share%20more%20details%3F"
+   target="_blank"
+   rel="noopener noreferrer">
+   WhatsApp
+</a>
     </div>
   </div>
 </footer>
@@ -962,7 +1098,104 @@ document.querySelectorAll('input[name="phone"]').forEach(inp => {
   update();
 })();
 
+
+/* ---------- Loading screen with flying planes ---------- */
+(function () {
+  const root = document.documentElement, el = document.getElementById('loader');
+  if (!el || !root.classList.contains('has-loader')) return;
+
+  const PLANE = '<svg class="pl" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>';
+  const PLANES = [                               // y = height, s = size, t = speed (s), d = start, o = opacity, l = right to left
+    { y:14, s:30, t:14, d:-2,  o:.9 },
+    { y:29, s:20, t:20, d:-9,  o:.5, l:1 },
+    { y:54, s:44, t:11, d:-5,  o:.95 },
+    { y:70, s:26, t:17, d:-12, o:.6, l:1 },
+    { y:84, s:34, t:13, d:-7,  o:.8 },
+    { y:40, s:16, t:24, d:-14, o:.4, l:1 }
+  ];
+  document.getElementById('lPlanes').innerHTML = PLANES.map(p =>
+    `<div class="fly${p.l ? ' l' : ''}" style="--y:${p.y}%;--s:${p.s}px;--t:${p.t}s;--d:${p.d}s;--o:${p.o}"><div class="bob"><i class="trail"></i>${PLANE}</div></div>`).join('');
+
+  document.getElementById('lLogo').onerror = function () {          // logo missing: show text
+    const w = document.createElement('div'); w.className = 'l-word'; w.textContent = 'ALLPOINTS'; this.replaceWith(w);
+  };
+
+  const fill = document.getElementById('lFill'), num = document.getElementById('lNum');
+  const MIN = 1800;                                                 // loading screen length in ms
+  const t0 = performance.now();
+  let loaded = document.readyState === 'complete', exited = false;
+  addEventListener('load', () => { loaded = true; });
+
+  function draw(e) { fill.style.transform = `scaleX(${e})`; num.textContent = Math.round(e * 100) + '%'; }
+
+  function exit() {
+    if (exited) return; exited = true;
+    try { sessionStorage.setItem('loader', '1'); } catch (e) {}
+    draw(1);
+    el.classList.add('out');
+    setTimeout(() => root.classList.remove('loader-on'), 350);      // hero text starts as the screen rises
+    setTimeout(() => { root.classList.remove('has-loader'); el.remove(); }, 1000);
+  }
+
+  (function frame(t) {
+    if (exited) return;
+    let p = Math.min((t - t0) / MIN, 1);
+    if (!loaded) p = Math.min(p, .92);                              // wait here until the page has loaded
+    draw(1 - Math.pow(1 - p, 2));
+    if (p >= 1) setTimeout(exit, 300); else requestAnimationFrame(frame);
+  })(t0);
+
+  document.getElementById('lSkip').addEventListener('click', exit);
+})();
+
+/* ---------- why allpoints ---------- */
+(function () {
+  const rows = [...document.querySelectorAll('.why-row')];
+  if (!rows.length) return;
+  function fit() {
+    rows.forEach(r => r.style.minHeight = '');
+    if (innerWidth <= 900) return;
+    const h = Math.max(...rows.map(r => r.offsetHeight));
+    rows.forEach(r => r.style.minHeight = h + 'px');
+  }
+  addEventListener('resize', fit); addEventListener('load', fit); fit();
+})();
+
+/* count-up for the numbers */
+(function () {
+  const box = document.getElementById('whyStats');
+  if (!box) return;
+  const nums = [...box.querySelectorAll('[data-count]')];
+  const run = () => nums.forEach(el => {
+    const end = +el.dataset.count, t0 = performance.now(), D = 1600;
+    (function f(t) {
+      const p = Math.min((t - t0) / D, 1);
+      el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(f);
+    })(t0);
+  });
+  new IntersectionObserver((es, o) => es.forEach(e => {
+    if (e.isIntersecting) { run(); o.disconnect(); }
+  }), { threshold: .4 }).observe(box);
+})();
+
+/* ---------- about ---------- */
+(function () {
+  const box = document.querySelector('.abt-stack');
+  if (!box) return;
+  const cards = box.querySelectorAll('.wcard');
+  box.classList.add('abt-anim');
+  const o = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); o.unobserve(e.target); }
+  }), { threshold: .1 });
+  cards.forEach(c => o.observe(c));
+})();
+
+
 </script>
+
+
+
 
 <script src="destinations.js"></script>
 
