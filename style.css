@@ -934,3 +934,11 @@ html.has-loader #loader{display:grid}
     display:-webkit-box;-webkit-line-clamp:4;line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
   }
 }
+
+
+/* popup buttons */
+.up-foot .btn{
+  font:inherit;font-size:1.05rem;font-weight:700;
+  padding:15px 22px;cursor:pointer;
+}
+.up-foot small{font-size:.9rem}
