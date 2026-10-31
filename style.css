@@ -910,3 +910,21 @@ html.has-loader #loader{display:grid}
 .l-skip:hover{color:var(--coral)}
 @keyframes lIn{from{opacity:0;transform:translateY(18px) scale(.92)}}
 @keyframes lFade{from{opacity:0;transform:translateY(10px)}}
+
+
+/* ===== Mobile fix: pinned sections ===== */
+.route-stage{height:100svh;height:100dvh}
+.dsl{height:100svh;height:100dvh;min-height:0}
+
+@media (max-width:900px){
+  .route{height:260svh}                                   /* was 400vh */
+  .dsl-pin{height:calc((var(--n,4) + 1) * 60svh)}         /* was 100svh per slide */
+
+  .dsl-region{font-size:.85rem;margin-bottom:6px}
+  .dsl-content.is-hero .dsl-title{font-size:clamp(1.9rem,9vw,2.8rem)}
+  .dsl-title{margin-bottom:12px}
+  .dsl-desc{
+    font-size:.9rem;margin-bottom:14px;
+    display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
+  }
+}
