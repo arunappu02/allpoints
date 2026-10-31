@@ -5,7 +5,13 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:auto}
-body{font-family:var(--font);background:var(--sand);color:var(--ink);line-height:1.6;overflow-x:hidden}
+/* body{font-family:var(--font);background:var(--sand);color:var(--ink);line-height:1.6;overflow-x:hidden} */
+body{font-family:var(--font);background:var(--sand);color:var(--ink);line-height:1.6;overflow-x:clip}
+
+/* very old browsers that do not know "clip" */
+@supports not (overflow:clip){
+  html{overflow-x:hidden}
+}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 a:focus-visible,button:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
@@ -925,6 +931,6 @@ html.has-loader #loader{display:grid}
   .dsl-title{margin-bottom:12px}
   .dsl-desc{
     font-size:.9rem;margin-bottom:14px;
-    display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
+    display:-webkit-box;-webkit-line-clamp:4;line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
   }
 }
