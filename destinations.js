@@ -15,7 +15,9 @@ window.UNIS = {
     { name:'Global College Malta', city:'Ricasoli, SmartCity Malta' },
     { name:'Cross College Malta', city:'Qormi' },
     { name:'Uniplural Academy', city:'Birkirkara' },
-    { name:'Ascencia Malta', city:'Floriana' }
+    { name:'Ascencia Malta', city:'Floriana' },
+    { name: 'GBS Malta', city: "St. Julian's" }
+
   ],
   'Germany': [
     { name:'Berlin School of Business and Innovation', city:'Berlin' },
@@ -27,14 +29,30 @@ window.UNIS = {
   'Lithuania': [
     { name:'ISM University of Management and Economics', city:'Vilnius' }
   ],
+  'USA': [
+    { name: 'Avila University', city: 'Kansas City' },
+    { name: 'Webster University', city: 'Webster Groves' }
+  ],
   'Canada': [
     { name:'University Canada West', city:'Vancouver' }
+  ],
+  'Spain': [
+    { name: 'Ascencia Spain', city: 'Barcelona' },
+  ],
+  'Netherland': [
+    { name: 'IU International University of Applied Sciences', city: 'Erfurt' },
+  ],
+   'Ireland': [
+    { name: 'IBAT College Dublin', city: 'Dublin' },
   ],
   'France': [
     { name:'Collège de Paris', city:'Paris' }
   ],
   'Switzerland': [
     { name:'Geneva School of Diplomacy', city:'Geneva' }
+  ],
+   'Malaysia': [
+    { name:'Yes International Collage', city:'Kuala Lumpur' }
   ],
   'Poland': [
     { name:'Vistula University', city:'Warsaw' }
@@ -44,10 +62,42 @@ window.UNIS = {
 /* ---------- 2) Popup background photos ---------- */
 window.UPHOTOS = {
   'Malta': 'destinations/malta.jpg',
-  'United Kingdom': 'destinations/uk.jpg',
+  'UK': 'destinations/uk.jpg',
   'Canada': 'destinations/canada.jpg',
   'Australia': 'destinations/australia.jpg',
-  'Germany': 'destinations/germany.jpg'
+  'Germany': 'destinations/germany.jpg',
+  'Malaysia': 'destinations/malaysia.jpg',
+  'USA': 'destinations/usa.jpg',     
+  'New Zealand': 'destinations/NewZealand.jpg',
+  'Singapore': 'destinations/Singapore.jpg',
+  'France': 'destinations/France.jpg',
+  'Uzbekistan': 'destinations/Uzbekistan.jpg',
+  'Slovakia': 'destinations/Slovakia.jpg',
+  'Armenia': 'destinations/Armenia.jpg',
+  'Poland': 'destinations/Poland.jpg',
+  'Czech Republic': 'destinations/CzechRepublic.jpg',
+  'Ireland': 'destinations/Ireland.jpg',
+  'Sweden': 'destinations/Sweden.jpg',
+  'Netherlands': 'destinations/Netherlands.jpg',
+  'Austria': 'destinations/Austria.jpg',
+  'Denmark': 'destinations/Denmark.jpg',
+  'Finland': 'destinations/Finland.jpg',
+  'Italy': 'destinations/Italy.jpg',
+  'Norway': 'destinations/Norway.jpg',
+  'Georgia': 'destinations/Georgia.jpg',
+  'Hungary': 'destinations/Hungary.jpg',
+  'Spain': 'destinations/Spain.jpg',
+  'Lithuania': 'destinations/Lithuania.jpg',
+  'Cyprus': 'destinations/Cyprus.jpg',
+  'UAE': 'destinations/UAE.jpg',
+  'Mauritius': 'destinations/Mauritius.jpg',
+  'Latvia': 'destinations/Latvia.jpg',
+  'Kyrgyzstan': 'destinations/Kyrgyzstan.jpg',
+  'Switzerland': 'destinations/Switzerland.jpg',
+  'South Korea': 'destinations/SouthKorea.jpg',
+  'Russia': 'destinations/Russia.jpg',
+  'Moldova': 'destinations/australia.jpg',
+  'Albania': 'destinations/australia.jpg'
 };
 
 /* ---------- 3) University popup: select -> counselling form -> thank you ---------- */
@@ -180,12 +230,12 @@ window.UPHOTOS = {
       desc:'Discover international education opportunities with AllPoints. We help students explore study destinations, suitable courses, and educational pathways that align with their academic goals and career ambitions.' },
     { name:'Malta', region:'Southern Europe (Mediterranean)', img:'destinations/malta.jpg',
       desc:'Malta is a beautiful Mediterranean island known for its quality education, English-speaking environment, rich history, and vibrant lifestyle. It offers international students excellent learning opportunities, cultural experiences, and access to Europe.' },
-    { name:'United Kingdom', label:'UK', region:'Northwestern Europe', img:'destinations/uk.jpg',
-      desc:'The UK offers world-class education, globally recognised degrees, and excellent career opportunities. Study in the UK and take the next step towards a brighter future!' },
+    { name:'Malaysia', region:'Southeast Asia', img:'destinations/malaysia.jpg',
+      desc:'Malaysia offers affordable education, internationally recognised universities, diverse courses, and a multicultural student lifestyle with excellent career opportunities.' },
     { name:'Canada', region:'North America', img:'destinations/canada.jpg',
       desc:'Canada offers quality education, globally recognised degrees, and excellent career opportunities. Study in Canada and build a brighter future!' },
-    { name:'Australia', region:'Oceania', img:'destinations/australia.jpg',
-      desc:'Australia is located in Oceania, known for its world-class education, globally recognised degrees, and excellent career opportunities. Study in Australia and build a bright future!' },
+    { name:'USA', region:'North America.', img:'destinations/usa.jpg',
+      desc:'The United States offers world-class universities, diverse study programmes, excellent research opportunities, and a vibrant multicultural student experience.' },
     { name:'Germany', region:'Europe', img:'destinations/germany.jpg',
       desc:'Germany offers high-quality education, globally recognised degrees, and excellent career opportunities. Study in Germany and explore your future in one of Europe’s leading destinations!' },
     { name:'All destinations', label:'View all countries', img:'destinations/earth2.jpg', all:true }
@@ -328,16 +378,21 @@ function go(t, dir) {
 }
 
  function sync() {
-  const p = progress();
-  bar.style.transform = `scaleX(${p})`;
-  const want = indexFor(p);
-  if (directTarget !== null && want !== directTarget) directTarget = null;   // user scrolled elsewhere
-  if (!moving && want !== cur) {
-    const t = directTarget !== null ? want : cur + Math.sign(want - cur);   // click = direct, wheel = step by step
-    go(t, want > cur ? 1 : -1);
+    const p = progress();
+    bar.style.transform = `scaleX(${p})`;
+    const want = indexFor(p);
+    if (directTarget !== null && want !== directTarget) directTarget = null;
+
+    const r = stage.getBoundingClientRect();
+    const onScreen = r.bottom > 0 && r.top < innerHeight;
+    if (!onScreen && !moving && want !== cur) { snap(want); return; }     // slider off screen: change silently
+
+    if (!moving && want !== cur) {
+      const t = directTarget !== null ? want : cur + Math.sign(want - cur);
+      go(t, want > cur ? 1 : -1);
+    }
+    if (want === cur) directTarget = null;
   }
-  if (want === cur) directTarget = null;
-}
 
   btn.addEventListener('click', e => {
     const d = DATA[cur];
