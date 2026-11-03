@@ -15,7 +15,6 @@ window.UNIS = {
     { name:'Global College Malta', city:'Ricasoli, SmartCity Malta' },
     { name:'Cross College Malta', city:'Qormi' },
     { name:'Uniplural Academy', city:'Birkirkara' },
-    { name:'Ascencia Malta', city:'Floriana' },
     { name: 'GBS Malta', city: "St. Julian's" }
 
   ],
@@ -37,9 +36,9 @@ window.UNIS = {
     { name:'University Canada West', city:'Vancouver' }
   ],
   'Spain': [
-    { name: 'Ascencia Spain', city: 'Barcelona' },
+    { name: 'Ascencia Spain', city: 'Valencia' },
   ],
-  'Netherland': [
+  'Netherlands': [
     { name: 'IU International University of Applied Sciences', city: 'Erfurt' },
   ],
    'Ireland': [
@@ -52,7 +51,7 @@ window.UNIS = {
     { name:'Geneva School of Diplomacy', city:'Geneva' }
   ],
    'Malaysia': [
-    { name:'Yes International Collage', city:'Kuala Lumpur' }
+    { name:'Yes International College', city:'Kuala Lumpur' }
   ],
   'Poland': [
     { name:'Vistula University', city:'Warsaw' }
@@ -96,8 +95,8 @@ window.UPHOTOS = {
   'Switzerland': 'destinations/Switzerland.jpg',
   'South Korea': 'destinations/SouthKorea.jpg',
   'Russia': 'destinations/Russia.jpg',
-  'Moldova': 'destinations/australia.jpg',
-  'Albania': 'destinations/australia.jpg'
+  'Moldova': 'destinations/Moldova.jpg',
+  'Albania': 'destinations/Albania.jpg'
 };
 
 /* ---------- 3) University popup: select -> counselling form -> thank you ---------- */
@@ -234,7 +233,7 @@ window.UPHOTOS = {
       desc:'Malaysia offers affordable education, internationally recognised universities, diverse courses, and a multicultural student lifestyle with excellent career opportunities.' },
     { name:'Canada', region:'North America', img:'destinations/canada.jpg',
       desc:'Canada offers quality education, globally recognised degrees, and excellent career opportunities. Study in Canada and build a brighter future!' },
-    { name:'USA', region:'North America.', img:'destinations/usa.jpg',
+    { name:'USA', region:'North America', img:'destinations/usa.jpg',
       desc:'The United States offers world-class universities, diverse study programmes, excellent research opportunities, and a vibrant multicultural student experience.' },
     { name:'Germany', region:'Europe', img:'destinations/germany.jpg',
       desc:'Germany offers high-quality education, globally recognised degrees, and excellent career opportunities. Study in Germany and explore your future in one of Europe’s leading destinations!' },
@@ -256,7 +255,7 @@ window.UPHOTOS = {
 
   const still = i => DATA[i].poster || DATA[i].img || '';
   const thumb = i => DATA[i].thumb || still(i);
-  DATA.forEach((d, i) => { if (still(i)) new Image().src = still(i); });
+  [0, 1, 2].forEach(i => { if (DATA[i] && still(i)) new Image().src = still(i); });
   const pad = v => String(v).padStart(2, '0');
 
   function fillMedia(el, i) {
