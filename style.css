@@ -258,7 +258,7 @@ h2{font-size:clamp(1.9rem,4.6vw,3.6rem);max-width:20ch;margin-bottom:20px}
 .why-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,48px);
   margin:clamp(28px,4vw,48px) calc(var(--pad) * -1);padding:clamp(40px,6vw,80px) var(--pad) clamp(52px,8vw,110px);color:#fff;
   /* map.png is the map you already use in the loading screen. Change .8 to show more / less of the map */
-  background:linear-gradient(rgba(13,43,62,.8),rgba(13,43,62,.8)),url('map.png') center/cover no-repeat,var(--navy)}
+  background:linear-gradient(rgba(13,43,62,.8),rgba(13,43,62,.8)),url('map.webp') center/cover no-repeat,var(--navy)}
 .why-stats>div{border-top:1px solid rgba(255,255,255,.35);padding-top:clamp(18px,2.6vw,36px)}
 .why-stats b{display:block;font-size:clamp(3rem,7.4vw,6rem);line-height:1;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
 .why-stats em{font-style:normal;color:var(--coral)}
@@ -917,7 +917,6 @@ html.has-loader #loader{display:grid}
 @keyframes lIn{from{opacity:0;transform:translateY(18px) scale(.92)}}
 @keyframes lFade{from{opacity:0;transform:translateY(10px)}}
 
-
 /* ===== Mobile fix: pinned sections ===== */
 .route-stage{height:100svh;height:100dvh}
 .dsl{height:100svh;height:100dvh;min-height:0}
@@ -935,10 +934,90 @@ html.has-loader #loader{display:grid}
   }
 }
 
-
 /* popup buttons */
 .up-foot .btn{
   font:inherit;font-size:1.05rem;font-weight:700;
   padding:15px 22px;cursor:pointer;
 }
 .up-foot small{font-size:.9rem}
+
+
+/* ===== Welcome contact popup ===== */
+.wp-ov{position:fixed;inset:0;z-index:1300;background:rgba(5,18,28,.6);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .35s}
+.wp-ov.open{opacity:1;pointer-events:auto}
+
+.wp{
+  position:fixed;z-index:1301;left:50%;top:50%;width:min(820px,94vw);max-height:92vh;max-height:92dvh;overflow:auto;
+  display:grid;grid-template-columns:.85fr 1.15fr;background:#fff;color:var(--ink);border-radius:var(--r);
+  box-shadow:0 30px 80px rgba(0,0,0,.4);
+  opacity:0;pointer-events:none;transform:translate(-50%,-46%) scale(.94);
+  transition:opacity .35s,transform .45s cubic-bezier(.2,.8,.2,1);
+}
+.wp.open{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+
+.wp-x{position:absolute;top:14px;right:14px;z-index:2;width:38px;height:38px;border-radius:50%;cursor:pointer;
+  border:1.5px solid #d9dfe4;background:#fff;color:var(--ink);transition:background .25s,color .25s,border-color .25s}
+.wp-x:hover{background:var(--coral);border-color:var(--coral);color:#fff}
+
+.wp-side{padding:clamp(24px,3.4vw,40px);color:#fff;display:flex;flex-direction:column;justify-content:center;gap:12px;
+  background:radial-gradient(70% 60% at 80% 0%,rgba(138,208,255,.3),transparent 70%),var(--navy)}
+.wp-side h3{font-size:clamp(1.6rem,3vw,2.2rem)}
+.wp-side p{color:#c9d6df}
+.wp-contact{list-style:none;display:grid;gap:10px;margin-top:8px;font-weight:700}
+.wp-contact a{transition:color .2s}
+.wp-contact a:hover{color:var(--coral)}
+
+
+.wp-form{display:grid;gap:12px;padding:clamp(24px,3.4vw,40px) clamp(22px,3vw,36px);align-content:center}
+.wp-form label{display:grid;gap:5px;font-weight:700;font-size:.88rem}
+.wp-form input,.wp-form select{width:100%;font:inherit;font-weight:500;color:var(--ink);background:#fff;
+  padding:12px 14px;border:1.5px solid #d9dfe4;border-radius:12px;transition:border-color .2s,box-shadow .2s}
+.wp-form input:focus,.wp-form select:focus{outline:none;border-color:var(--coral);box-shadow:0 0 0 4px rgba(255,107,74,.2)}
+.wp-form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.wp-form .btn{border:0;cursor:pointer;font:inherit;font-weight:700;padding:14px;text-align:center}
+.wp-form button:disabled{opacity:.6;cursor:wait}
+.wp-status{min-height:1.2em;font-weight:700;color:#c0392b}
+.wp-form textarea{
+  width:100%;font:inherit;font-weight:500;color:var(--ink);background:#fff;
+  padding:13px 16px;border:1.5px solid #d9dfe4;border-radius:14px;
+  transition:border-color .2s,box-shadow .2s}
+.wp-form textarea{min-height:120px;resize:vertical}
+.wp-form textarea:focus{
+  outline:none;border-color:var(--coral);box-shadow:0 0 0 4px rgba(255,107,74,.2)}
+.wp-done{grid-column:1/-1;display:grid;justify-items:center;text-align:center;gap:10px;padding:48px 24px}
+.wp-done[hidden]{display:none}
+.wp-ok{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;font-size:2rem;color:#fff;background:var(--coral)}
+.wp.sent .wp-side,.wp.sent .wp-form{display:none}
+
+@media (max-width:720px){
+  .wp{grid-template-columns:1fr;top:auto;bottom:0;left:0;width:100%;max-height:92dvh;border-radius:22px 22px 0 0;transform:translateY(40px)}
+  .wp.open{transform:none}
+  .wp-side{padding:26px 20px 18px}
+  .wp-form input,.wp-form select{font-size:16px}             /* stops iPhone zooming in */
+  .wp-form{padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+}
+
+/* ===== Header: more room for 9 menu links ===== */
+@media (min-width:1181px) and (max-width:1520px){
+  #hdr{padding-left:28px;padding-right:28px}
+  #hdr .logo img{height:40px}
+  #navLinks{gap:16px}
+  #navLinks a{font-size:.9rem}
+  #navLinks a.btn{padding:10px 18px}
+}
+/* 769px to 1180px: use the hamburger menu */
+@media (min-width:769px) and (max-width:1180px){
+  #hdr{min-height:70px;padding:10px 24px}
+  .menu-toggle{display:flex}
+  #navLinks{display:none;position:absolute;top:100%;left:0;right:0;padding:12px 24px 22px;flex-direction:column;align-items:stretch;gap:0;
+    background:#0d2b3e;box-shadow:0 12px 20px rgba(0,0,0,.2);max-height:calc(100dvh - 70px);overflow:auto}
+  #navLinks.active{display:flex}
+  #navLinks a{display:block;padding:14px 10px}
+  #navLinks a.btn{margin-top:10px;text-align:center}
+  #navLinks a:not(.btn)::after{display:none}
+  #navLinks a.active:not(.btn){border-left:3px solid var(--coral);padding-left:16px}
+}
+/* phones: the long menu can scroll */
+@media (max-width:768px){
+  #navLinks{max-height:calc(100dvh - 70px);overflow:auto}
+}
