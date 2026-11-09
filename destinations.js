@@ -15,6 +15,8 @@ window.UNIS = {
     { name:'Global College Malta', city:'Ricasoli, SmartCity Malta' },
     { name:'Cross College Malta', city:'Qormi' },
     { name:'Uniplural Academy', city:'Birkirkara' },
+    { name: 'La Vallette Institute', city: 'Msida' },
+    { name: 'Malta Leadership Institute', city: 'Birkirkara' },
     { name: 'GBS Malta', city: "St. Julian's" }
 
   ],
